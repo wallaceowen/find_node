@@ -2,7 +2,7 @@
 
 find_node: a convenience function for python data access
 
-Search a dict, list or tuple or any nested combination for a value, given a search path.
+Search a dict, list or tuple or any nested combination for a value, given a string search path delimited with `.` .
 search path is a string composed of search keys separated by a path separator (defaults
 to '.', can be overridden if '.' is a valid key value).
 
