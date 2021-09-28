@@ -6,9 +6,13 @@ Search a dict, list or tuple or any nested combination for a value, given a sear
 search path is a string composed of search keys separated by a path separator (defaults
 to '.', can be overridden if '.' is a valid key value).
 
-For example: find_node(data, "dbtables.flow_table.temperatures.7") returns 101.5
+For example: `find_node(data, "dbtables.flow_table.temperatures.7")`
+              returns `101.5`
+         or: `find_node(data, "dbtables.flow_table.temperatures")`
+              returns `[68.2, 71.4, 88.3, 89.5, 93.3, 98.1, 100.2, 101.5, 106.1]`
 
 with data:
+```
     {
         'dbtables': {
             'film_table': {
@@ -25,8 +29,6 @@ with data:
             }
         }
     }
+```
 
-
-Will raise either KeyError or IndexError on search failure, or
-ValueError if attempt to turn key into index fails because it's
-not a valid index (not a number).
+find_node will raise either KeyError or IndexError on search failure, or ValueError if attempt to turn key into index fails because it's not a valid index (not a number).
