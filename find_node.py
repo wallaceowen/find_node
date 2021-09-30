@@ -12,18 +12,16 @@ not a valid index (not a number).
 """
 
 def find_node(data, path, sep='.'):
-    if not len(path):
-        return data
     path_elements = path.split(sep)
     key = path_elements.pop(0)
     if type(data) in (list, tuple, str):
         key = int(key)
     elif type(data) is dict and key not in data.keys():
         key = int(key)
+    remaining = data[key]
     if len(path_elements):
-        return find_node(data[key], sep.join(path_elements))
-    else:
-        return data[key]
+        return find_node(remaining, sep.join(path_elements))
+    return remaining
 
 """test code for find_node
 
@@ -46,20 +44,20 @@ if __name__ == '__main__':
     for test in tests:
         try:
             data, key, expected = test
-            foo = find_node(data, key)
+            foo = alt3_find_node(data, key)
         except (KeyError, ValueError, IndexError) as err:
             if type(err) is expected:
                 print('pass')
             else:
-                print(f'Caught {type(err)} on search of {data} using {key}.  Expected: {expected}')
+                print(f'Caught {type(err)} on search of {data} using {key}  Expected: {expected}')
                 print('fail')
         except Exception as err:
-            print(f'Caught UNEXPECTED {type(err)} on search of {data} using {key}.  Expected: {expected}')
+            print(f'Caught UNEXPECTED {type(err)} on search of {data} using {key}  Expected: {expected}')
             raise
         else:
             if foo == expected:
                 print('pass')
             else:
-                print(f'retrieved {foo} on search of {data} using {key}.  Expected: {expected}')
+                print(f'retrieved {foo} on search of {data} using {key}  Expected: {expected}')
                 print('fail')
 
