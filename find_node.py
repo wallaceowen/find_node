@@ -44,7 +44,7 @@ if __name__ == '__main__':
     for test in tests:
         try:
             data, key, expected = test
-            foo = alt3_find_node(data, key)
+            result = find_node(data, key)
         except (KeyError, ValueError, IndexError) as err:
             if type(err) is expected:
                 print('pass')
@@ -55,9 +55,9 @@ if __name__ == '__main__':
             print(f'Caught UNEXPECTED {type(err)} on search of {data} using {key}  Expected: {expected}')
             raise
         else:
-            if foo == expected:
+            if result == expected:
                 print('pass')
             else:
-                print(f'retrieved {foo} on search of {data} using {key}  Expected: {expected}')
+                print(f'retrieved {result} on search of {data} using {key}  Expected: {expected}')
                 print('fail')
 
